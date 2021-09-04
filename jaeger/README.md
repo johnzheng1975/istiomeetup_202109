@@ -22,7 +22,7 @@ This is a sample, about how to integrate  istio/ app /logs/ client together.
 ## For k8s test
 - Run `kubectl create namespace jaegertest`
 - Run `kubectl label namespace jaegertest istio-injection=enabled`
-- Run `kubectl create -n jaegertest -f k8s_deploy\` to create two deploy
+- Run `kubectl create -n jaegertest -f k8s_deploy/` to create two deploy
 - Run `kubectl -n jaegertest create svc clusterip foo --tcp=8081:8081 `
 - Run `kubectl -n jaegertest create svc clusterip bar --tcp=8081:8081 `
 - Change virtual service, let foo service expose to outside acces.
@@ -32,7 +32,7 @@ This is a sample, about how to integrate  istio/ app /logs/ client together.
         prefix: /servicetest
     route:
     - destination:
-        host: foo
+        host: jaegertest2.hpbp-stg-core.svc.cluster.local
         port:
           number: 8081
 
