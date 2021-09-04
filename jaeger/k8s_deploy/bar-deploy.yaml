@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  bar
+  labels:
+    app: bar
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bar
+  template:
+    metadata:
+      labels:
+        app: bar
+        version: v1
+    spec:
+      containers:
+        - name: bar-container
+          image: johnzheng/jaegertest01:0.2
+          env:
+          - name: JAEGER_AGENT_HOST
+            value: jaeger-agent.istio-system
+          - name: JAEGER_AGENT_PORT
+            value: "6831"
+          - name: JAEGER_SERVICE_NAME
+            value: "bar"
+          ports:
+            - containerPort: 8081
+          resources:
+            limits:
+              cpu: 200m
+              memory: 512M
+            requests:
+              cpu: 20m
+              memory: 64M
+              
+# k create svc clusterip bar --tcp=8081:8081 
+

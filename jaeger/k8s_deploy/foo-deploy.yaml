@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  foo
+  labels:
+    app: foo
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: foo
+  template:
+    metadata:
+      labels:
+        app: foo
+        version: v1
+    spec:
+      containers:
+        - name: foo-container
+          image: johnzheng/jaegertest01:0.2
+          env:
+          - name: JAEGER_AGENT_HOST
+            value: jaeger-agent.istio-system
+          - name: JAEGER_AGENT_PORT
+            value: "6831"
+          - name: JAEGER_SERVICE_NAME
+            value: "foo"
+          - name: nextserviceurl
+            value: "http://bar:8081/servicetest/v1/jaegertest"
+          ports:
+            - containerPort: 8081
+          resources:
+            limits:
+              cpu: 200m
+              memory: 512M
+            requests:
+              cpu: 20m
+              memory: 64M
+
+# k create svc clusterip foo --tcp=8081:8081 
+
