@@ -16,4 +16,4 @@ COPY --from=builder /go/src/servicetest/main /go/bin/servicetest
 
 CMD ["/go/bin/servicetest"]
 
-EXPOSE 8080
+EXPOSE 8081

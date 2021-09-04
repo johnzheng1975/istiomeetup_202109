@@ -1,0 +1,22 @@
+.ONESHELL:
+
+SHELL := /bin/bash
+PROJECT=$(shell basename ${PWD})
+INTERFACE=$(shell netstat -r | head -n 3 | tail -n 1 | awk '{print $$NF}')
+IP=$(shell ifconfig ${INTERFACE} | grep inet | grep -v inet6 | awk '{print $$2}')
+OS=$(shell go env GOOS)
+OS_ARCH=$(shell go env GOHOSTARCH)
+SWAGGER_VERSION=v0.17.2
+DEP_VERSION=v0.4.1
+LINTER_VERSION=1.13.2
+AUTHENTICATOR_VERSION=1.11.5
+KUBECTL_VERSION=v1.13.0
+TERRAFORM_VERSION=0.11.13
+
+PROJECT_NAME = servicetest
+PROJECT_CAPITAL_NAME = ServiceTest
+
+VERSION = $(shell cat $(dir $(lastword $(MAKEFILE_LIST)))/VERSION)
+GIT_BRANCH = $(shell git branch | grep "*" | cut -d' ' -f2)
+GIT_VERSION = $(shell git show -s --format='format:%h %aI')
+BUILD ?= $(VERSION) $(GIT_BRANCH) $(GIT_VERSION) $(shell go version)

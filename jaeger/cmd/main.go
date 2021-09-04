@@ -23,6 +23,7 @@ var cfg *jaegercfg.Configuration
 
 func init() {
 	log.Println("Initialize ... ...")
+	//Uncomment below, for docker-compose debug
 	//os.Setenv("JAEGER_SERVICE_NAME", "fromCode")
 	//os.Setenv("JAEGER_AGENT_HOST", "localhost")
 	//os.Setenv("JAEGER_AGENT_PORT", "6831")
@@ -149,5 +150,5 @@ func invokeAnotherFunction(sp *opentracing.Span) {
 
 func main() {
 	http.HandleFunc("/servicetest/v1/jaegertest", jaegertest)
-	http.ListenAndServe(":8081", nil)
+	http.ListenAndServe(":8081", nil)  //8080 is for build image, change to 8080 for docker-compose debug
 }
