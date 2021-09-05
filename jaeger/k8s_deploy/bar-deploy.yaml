@@ -21,7 +21,7 @@ spec:
           image: johnzheng/jaegertest01:0.2
           env:
           - name: JAEGER_AGENT_HOST
-            value: jaeger-agent.istio-system
+            value: jaeger-agent.jaeger
           - name: JAEGER_AGENT_PORT
             value: "6831"
           - name: JAEGER_SERVICE_NAME
