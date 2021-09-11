@@ -37,3 +37,13 @@ This is a sample, about how to integrate  istio/ app /logs/ client together.
           number: 8081
 
 ```
+
+## Test Result
+### Jaeger Connect together - ingress-gateway, istio-proxy, applications
+![result-of-jaeger](https://github.com/johnzheng1975/istiomeetup_202109/blob/main/tracing_integration/testresult/result-k8s.png?raw=true)
+
+### Logs connect together - client, ingress-gateway, istio-proxy, applications
+![result-of-logs](https://github.com/johnzheng1975/istiomeetup_202109/blob/main/tracing_integration/testresult/log-k8s-with-x-request-id.png?raw=true)
+
+### Query trace with x-request-id
+![result-of-logs](https://github.com/johnzheng1975/istiomeetup_202109/blob/main/tracing_integration/testresult/result-query-trace-based-on-x-request-id.png?raw=true)
