@@ -1,5 +1,5 @@
-# sample service
-This is a sample, about how to integrate  istio/ app /logs/ client together.
+# Sample code
+This is a sample, about how to integrate istio/ app /logs/ client together.
 
 ## For docker-compose debug.
 - Run `docker-compose up`
